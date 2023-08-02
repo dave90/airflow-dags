@@ -37,10 +37,21 @@ dag = DAG(
 # spark = open(
 #     "example_spark_kubernetes_operator_pi.yaml").read()
 
-submit = SparkKubernetesOperator(
-    task_id='wordcount_submit',
+submit_1 = SparkKubernetesOperator(
+    task_id='wordcount_submit_1',
     namespace="default",
-    application_file="my-wordcount.yaml",
+    application_file="my-wordcount-1.yaml",
+    kubernetes_conn_id="dev-aks-1",
+    do_xcom_push=True,
+    dag=dag,
+    api_group="sparkoperator.k8s.io",
+    api_version="v1beta2"
+)
+
+submit_2 = SparkKubernetesOperator(
+    task_id='wordcount_submit_2',
+    namespace="default",
+    application_file="my-wordcount-2.yaml",
     kubernetes_conn_id="dev-aks-1",
     do_xcom_push=True,
     dag=dag,
@@ -49,4 +60,4 @@ submit = SparkKubernetesOperator(
 )
 
 
-submit
+submit_1 >> submit_2
