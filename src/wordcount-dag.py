@@ -52,7 +52,7 @@ sensor = SparkKubernetesSensor(
     task_id='wordcount_monitor',
     namespace="default",
     application_name="{{ task_instance.xcom_pull(task_ids='wordcount_submit')['metadata']['name'] }}",
-    kubernetes_conn_id="kubernetes_in_cluster",
+    kubernetes_conn_id="dev-aks-1",
     dag=dag,
     api_group="sparkoperator.hpe.com",
     attach_log=True
