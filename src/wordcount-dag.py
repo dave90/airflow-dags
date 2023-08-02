@@ -48,15 +48,5 @@ submit = SparkKubernetesOperator(
     api_version="v1beta2"
 )
 
-sensor = SparkKubernetesSensor(
-    task_id='wordcount_monitor',
-    namespace="default",
-    application_name="{{ task_instance.xcom_pull(task_ids='wordcount_submit')['metadata']['name'] }}",
-    kubernetes_conn_id="dev-aks-1",
-    dag=dag,
-    api_group="sparkoperator.k8s.io",
-    api_version="v1beta2",
-    attach_log=True
-)
 
-submit >> sensor
+submit
