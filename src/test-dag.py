@@ -11,15 +11,15 @@ import pendulum
 def sample_etl():
     @task()
     def extract():
-        pass
+        print("Extract")
 
     @task()
     def transform():
-        pass
+        print("Transform")
 
     @task()
     def load():
-        pass
+        print("Load")
 
     extract() >> transform() >> load()
 
