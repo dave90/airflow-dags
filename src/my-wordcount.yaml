@@ -19,7 +19,7 @@
 apiVersion: "sparkoperator.k8s.io/v1beta2"
 kind: SparkApplication
 metadata:
-  name: my-wordcount
+  name: my-wordcount-{{ task_instance.try_number }}
   namespace: default
 spec:
   type: Python
