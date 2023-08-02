@@ -44,7 +44,8 @@ submit = SparkKubernetesOperator(
     kubernetes_conn_id="dev-aks-1",
     do_xcom_push=True,
     dag=dag,
-    api_group="sparkoperator.hpe.com",
+    api_group="sparkoperator.k8s.io",
+    api_version="v1beta2",
     enable_impersonation_from_ldap_user=False
 )
 
@@ -54,7 +55,8 @@ sensor = SparkKubernetesSensor(
     application_name="{{ task_instance.xcom_pull(task_ids='wordcount_submit')['metadata']['name'] }}",
     kubernetes_conn_id="dev-aks-1",
     dag=dag,
-    api_group="sparkoperator.hpe.com",
+    api_group="sparkoperator.k8s.io",
+    api_version="v1beta2",
     attach_log=True
 )
 
