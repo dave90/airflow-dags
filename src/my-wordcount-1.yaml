@@ -25,7 +25,7 @@ spec:
   type: Python
   pythonVersion: "3"
   mode: cluster
-  image: "dockercr1.azurecr.io/spark-py:1.1.3"
+  image: "dockercr1.azurecr.io/spark-py:3.4.1"
   imagePullPolicy: Always
   mainApplicationFile: local:///opt/spark/my-libs/wordcount.py
   arguments:
